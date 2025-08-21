@@ -1,0 +1,1 @@
+# Finnish tech layoffs tracker
