@@ -17,11 +17,16 @@ export default function Home() {
   const chartData = getChartData(layoffs);
 
   return (
-    <main
-      style={{
-        padding: '2rem',
-      }}
-    >
+      <main
+        style={{
+          padding: '2rem',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '100vh',
+        }}
+      >
       <h1
         style={{
           fontFamily: 'Roboto, Arial, sans-serif',

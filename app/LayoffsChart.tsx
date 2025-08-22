@@ -27,8 +27,12 @@ interface ChartProps {
 
 export default function LayoffsChart({ data, options }: ChartProps) {
     return (
-        <div style={{ maxWidth: 700, marginBottom: "2rem" }}>
-            <Bar data={data} options={options} />
+        <div style={{ width: '100%', maxWidth: 900, minWidth: 350, marginBottom: "2rem" }}>
+            <Bar
+            data={data}
+            options={{ ...options, maintainAspectRatio: false }}
+            height={typeof window !== "undefined" && window.innerWidth <= 600 ? 400 : 300}
+            />
         </div>
     );
 }
