@@ -23,10 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
-        {children}
-      </body>
-    </html>
+      <html lang="en">
+        <head>
+          <meta property="og:image" content="/og.png" />
+        </head>
+        <body className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+          {children}
+        </body>
+      </html>
   );
 }
