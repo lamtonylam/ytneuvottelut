@@ -6,11 +6,11 @@ export function getLayoffsByCompanyPerMonth(
   const result: Record<string, Record<string, number>> = {};
   layoffs.forEach((layoff) => {
     const month = layoff.date.slice(0, 7); // YYYY-MM
-    if (!result[layoff.company_name]) {
-      result[layoff.company_name] = {};
+    if (!result[layoff.company.companyName]) {
+      result[layoff.company.companyName] = {};
     }
-    result[layoff.company_name][month] =
-      (result[layoff.company_name][month] || 0) + layoff.fired_amount;
+    result[layoff.company.companyName][month] =
+      (result[layoff.company.companyName][month] || 0) + layoff.firedAmount;
   });
   return result;
 }

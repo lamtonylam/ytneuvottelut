@@ -7,10 +7,16 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 export type Layoff = {
-  company_name: string;
-  fired_amount: number;
-  percentage_of_workforce: number;
+  id: number;
+  companyId: number | null;
   date: string;
+  firedAmount: number;
+  company: {
+    id: number;
+    companyName: string;
+    hqCity: string | null;
+    companyHeadcount: number | null;
+  };
 };
 
 interface TableProps {
@@ -33,9 +39,9 @@ export default function LayoffsTable({ layoffs }: TableProps) {
         </TableHead>
         <TableBody>
           {sortedLayoffs.map((u) => (
-            <TableRow key={u.company_name}>
-              <TableCell>{u.company_name}</TableCell>
-              <TableCell>{u.fired_amount}</TableCell>
+            <TableRow key={u.id + u.date}>
+              <TableCell>{u.company.companyName}</TableCell>
+              <TableCell>{u.firedAmount}</TableCell>
               <TableCell>{u.date}</TableCell>
             </TableRow>
           ))}

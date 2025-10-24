@@ -1,13 +1,16 @@
-import { NextResponse } from "next/server";
-import db from "@/lib/db";
+import { NextResponse } from 'next/server';
+import { db } from '@/app/lib/db';
 
 export async function GET() {
-    const layoffs = db
-        .prepare(
-            `SELECT layoffs.*, companies.company_name, companies.HQ_city, companies.company_headcount
-      FROM layoffs
-      JOIN companies ON layoffs.company_id = companies.id;`
-        )
-        .all();
-    return NextResponse.json(layoffs);
+  try {
+    const allLayoffs = await db.query.layoffs.findMany({
+      with: {
+        company: true
+      },
+    });
+    return NextResponse.json(allLayoffs);
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: 'Failed to fetch layoffs' }, { status: 500 });
+  }
 }
